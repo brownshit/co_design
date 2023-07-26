@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from orders.views import ReactAppView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('orders/', include('orders.urls')),
+    path("", ReactAppView.as_view(),name="react_app"),#React.app을 불러오는 urls
 ]

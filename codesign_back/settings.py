@@ -56,7 +56,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORGINS = True
+#CORS_ALLOW_ALL_ORGINS = True
+CORS_ORIGIN_WHITELIST =[
+    "http://localhost:3000",
+]
+#만약 이거 안되면 그냥 위에 주석처리한거 사용하기
 
 ROOT_URLCONF = 'codesign_back.urls'
 

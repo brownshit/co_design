@@ -37,7 +37,7 @@ const Main = () => {
     }
 
     return response.json();
-};
+  };
 
   
   const handleClickDirections = () => {
@@ -54,8 +54,8 @@ const Main = () => {
       <div style={{
         display: 'flex', 
         flexDirection: 'column', 
-        alignItems: 'center', 
-        position: 'absolute', 
+        alignItems: 'center',
+        position: 'absolute',
         top: 'calc(50% - 220px)'
       }}>
         <h1 style={{textAlign: 'center', fontSize: '2rem'}}>WPS 환영합니다!</h1>
