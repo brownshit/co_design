@@ -63,7 +63,7 @@ ROOT_URLCONF = 'codesign_back.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # templates 폴더 설정
+        'DIRS': [os.path.join(BASE_DIR, 'orders/co-design/build')],  # templates 폴더 설정
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,12 +125,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'orders','co-design','build','static'),
+    os.path.join(BASE_DIR,'orders/co-design/build/static'),
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
