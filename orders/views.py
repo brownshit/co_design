@@ -9,10 +9,11 @@ def index(request):
 
 @api_view(['POST'])
 def submit_order(request):
-    phone_number = request.data.get('phone_number')
+    phone_number = request.data.get('phoneNumber')
     menu = request.data.get('menu')
+    total = request.data.get('total')
 
     # 데이터베이스에 저장하는 코드
-    order = Order.objects.create(phone_number=phone_number, menu=menu)
+    order = Order.objects.create(phone_number=phone_number, menu=menu, total=total)
     serializer = OrderSerializer(order)
     return Response(serializer.data)

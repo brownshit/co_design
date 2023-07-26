@@ -218,25 +218,34 @@ const Html1 = () => {
     let orderSummary = '';
   
     for (let i = 0; i < menuItems.length; i++) {
-      if (quantities[i] > 0) {
-        orderSummary += `${menuItems[i].name}: ${quantities[i]}개\n`;
-      }
+        if (quantities[i] > 0) {
+            orderSummary += `${menuItems[i].name}: ${quantities[i]}개\n`;
+        }
     }
   
     const total = calculateTotal();
   
     const confirmation = window.confirm(
-      `주문 정보:\n${orderSummary}총 가격: ${total}원\n결제하시겠습니까?`
+        `주문 정보:\n${orderSummary}총 가격: ${total}원\n결제하시겠습니까?`
     );
   
     if (confirmation) {
-      // 결제를 승인하면 이 부분에서 결제 처리 로직을 수행합니다.
-      console.log('결제 처리');
+        // 결제를 승인하면 이 부분에서 결제 처리 로직을 수행합니다.
+        console.log('결제 처리');
+        sendOrder({ phoneNumber, menu: orderSummary, total }) // 주문을 서버에 전송합니다.
+            .then(data => {
+                console.log(data); // 확인을 위해 콘솔에 출력합니다.
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     } else {
-      // 결제를 거부하면 이 부분에서 추가적인 작업을 수행할 수 있습니다.
-      console.log('결제 거부');
+        // 결제를 거부하면 이 부분에서 추가적인 작업을 수행할 수 있습니다.
+        console.log('결제 거부');
     }
-  };
+};
+
+  
   const handleCancel = () => {
     // 이 함수에서 취소 처리를 수행하시면 됩니다.
     // 예를 들어, 장바구니를 비우는 코드를 여기에 넣을 수 있습니다.
@@ -283,6 +292,21 @@ const Html1 = () => {
   );
 };
 
+const sendOrder = async (order) => {
+    const response = await fetch('/api/orders/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+    });
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+
+    return response.json();
+};
 
 
 
